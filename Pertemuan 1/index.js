@@ -10,6 +10,7 @@ const {
 let todayWindow;
 let createWindow;
 let listWindow;
+let aboutWindow;
 
 
 app.on("ready", () => {
@@ -61,6 +62,20 @@ const createWindowCreator = () => {
     createWindow.on("closed", ()  => (createWindow = null));
 };
 
+const aboutWindowCreator = () => {
+    aboutWindow = new BrowserWindow ({
+        webPreferences: {
+            nodeIntegration: true
+        },
+        width: 600,
+        height: 400,
+        title: "About"
+    });
+
+    aboutWindow.setMenu(null);
+    aboutWindow.loadURL(`file://${__dirname}/agus.html`);
+    aboutWindow.on("closed", ()  => (caboutWindow = null));
+};
 
 ipcMain.on("appointment:create", (event, appointment) => {
     console.log(appointment);
@@ -99,6 +114,14 @@ const menuTemplate =  [{
 
         label: "View",
         submenu: [{ role: "reload" }, { role: "toggledevtools" }]
+    }
+    ,
+    {
+
+        label: "About",
+        click(){
+            aboutWindowCreator();
+}
     }
 
 
