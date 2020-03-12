@@ -1,20 +1,28 @@
 const electron = require("electron");
-const {app, BrowserWindow, Menu, ipcMain} = electron;
+
+const {
+    app, 
+    BrowserWindow, 
+    Menu, 
+    ipcMain
+} = electron;
 
 let todayWindow;
 let createWindow;
 let listWindow;
 
-app.on("ready",  () => {
+
+app.on("ready", () => {
     todayWindow = new BrowserWindow({
-       webPreferences : {
-           nodeIntegration : true
-        },
-        title : "Aplikasi Dokter"  
+        webPreferences: {
+            nodeIntegration: true
+        }, 
+        title : "Aplikasi Dokter"
     });
 
     todayWindow.loadURL(`file://${__dirname}/today.html`);
     todayWindow.on("closed", () => {
+
         app.quit();
         todayWindow = null;
     });
@@ -24,76 +32,74 @@ app.on("ready",  () => {
 
 });
 
-const listWindowCreator = () =>{
-    listWindow = new BrowserWindow({
+const listWindowCreator = () => {
+    listWindow = new BrowserWindow ({
         webPreferences: {
-            nodeIntegration : true
+            nodeIntegration: true
         },
-
         width: 600,
         height: 400,
-        title : "All Apointments"
+        title: "All Appointments"
     });
-    
+
     listWindow.setMenu(null);
     listWindow.loadURL(`file://${__dirname}/list.html`);
-
-    listWindow.on("closed", () => (listWindow = null ));
+    listWindow.on("closed", ()  => (listWindow = null));
 };
-
-const createWindowCreator = () =>{
-    createWindow = new BrowserWindow({
+const createWindowCreator = () => {
+    createWindow = new BrowserWindow ({
         webPreferences: {
-            nodeIntegration : true
+            nodeIntegration: true
         },
-
         width: 600,
         height: 400,
-        title : "Create Apointments"
+        title: "Create Appointments"
     });
-    
+
     createWindow.setMenu(null);
     createWindow.loadURL(`file://${__dirname}/create.html`);
-
-    createWindow.on("closed", () => (createtWindow = null ));
+    createWindow.on("closed", ()  => (createWindow = null));
 };
 
-ipcMain.on("appointment:create", (event, appointment) =>{
+
+ipcMain.on("appointment:create", (event, appointment) => {
     console.log(appointment);
 });
 
-const menuTemplate = [{
-    label : "File",
-    submenu : [{
-        label : "New Appointment",
+ipcMain.on("appointment:request:list", event => {
+    console.log("here");
+});
 
-            click(){
-                createWindowCreator();
+const menuTemplate =  [{
+        label: "File",
+        submenu:[{
+                label: "New Appointment",
+
+                click() {
+                    createWindowCreator()
+                }
+            },
+            {
+                label: "All Apointments",
+                click() {
+                    listWindowCreator();
+                }
+            },
+            {
+                label: "Quit",
+                accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl + Q",
+                click() {
+                    app.quit();
+                }
             }
-        },
-        {
-            label : "All Apointment",
-            click(){
-                listWindowCreator();
-            }
-        },
-        {
-            label: "Quit",
-            accelerato : process.platform === "darwin" ? "Command+Q" :
-            "Ctrl+Q",
-            click(){
-                app.quit(); 
-            }
+        ]
+    },
 
+    {
 
-        }
+        label: "View",
+        submenu: [{ role: "reload" }, { role: "toggledevtools" }]
+    }
 
-    ]
-},
-{
-    label: "View",
-    submenu : [{ role : "reload"}, {role: "toggledevtools"}]
-}
 
 ]
-
