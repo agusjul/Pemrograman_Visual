@@ -1,0 +1,16 @@
+{
+  "name": "uts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^8.0.0",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start" : "electron ."
+  },
+  "author": "",
+  "license": "ISC"
+}
