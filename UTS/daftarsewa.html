@@ -7,5 +7,58 @@
 </head>
 <body>
     <h1>Halaman Daftar Sewa</h1>
+    <div id="daftarsewa"></div>
+
+
+    <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("sewa:request:list");
+
+        ipcRenderer.on('sewa:response:list', (event, pesan) => {
+        const listDiv = document.getElementById("daftarsewa");
+        
+        pesan.forEach(pesan => {
+        const pesanDiv =document.createElement("div");
+
+        const nameParagraph = document.createElement("p");
+        nameParagraph.innerHTML = `Name: ${pesan.name}`;
+
+        const numberParagraph = document.createElement("p")
+        numberParagraph.innerHTML = `No. Telepon: ${pesan.number}`;
+
+        const daterentParagraph = document.createElement("p")
+        daterentParagraph.innerHTML = `Tanggal Disewa: ${pesan.daterent}`;
+
+        const waktusewaParagraph = document.createElement("p")
+        waktusewaParagraph.innerHTML = `Waktu Sewa: ${pesan.waktusewa}`;
+        
+        const datereturnParagraph = document.createElement("p")
+        datereturnParagraph.innerHTML = `Tanggal Kembali: ${pesan.datereturn}`;
+
+        const waktukembaliParagraph = document.createElement("p")
+        waktukembaliParagraph.innerHTML = `Waktu Kembali: ${pesan.waktukembali}`;
+        
+        const locationParagraph = document.createElement("p")
+        locationParagraph.innerHTML = `Lokasi: ${pesan.location}`;
+
+
+        
+        const hr = document.createElement("hr");
+
+        pesanDiv.appendChild(nameParagraph);
+        pesanDiv.appendChild(numberParagraph);
+        pesanDiv.appendChild(daterentParagraph);
+        pesanDiv.appendChild(waktusewaParagraph);
+        pesanDiv.appendChild(datereturnParagraph);
+        pesanDiv.appendChild(waktukembaliParagraph);
+        pesanDiv.appendChild(locationParagraph);
+        pesanDiv.appendChild(hr);
+
+        listDiv.append(pesanDiv);
+
+        });
+    });
+    </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ const {
     ipcMain
 } = electron;
 
+let todayWindow;
 let pesanbaruWindow;
 let daftarpesanWindow;
 let daftarmobilWindow;
@@ -101,8 +102,11 @@ const pembayaranWindowCreator = () => {
 
 ipcMain.on("sewa:create", (event, pesan) => {
     daftarsewamobil.push(pesan);
-    pesanbaruWindow.close();
     console.log(daftarsewamobil);
+});
+
+ipcMain.on("sewa:request:list", event => {
+    daftarpesanWindow.webContents.send('sewa:response:list', daftarsewamobil)
 });
 
 const menuTemplate = [{
