@@ -8,16 +8,18 @@
 <body>
     <h1>Halaman Daftar Sewa</h1>
     <div id="daftarsewa"></div>
+    <div id="mobilpilihan"></div>
 
 
     <script>
         const electron = require("electron");
         const {ipcRenderer} = electron;
         ipcRenderer.send("sewa:request:list");
-
+        ipcRenderer.send("mobil:request:list");
+        
         ipcRenderer.on('sewa:response:list', (event, pesan) => {
         const listDiv = document.getElementById("daftarsewa");
-        
+
         pesan.forEach(pesan => {
         const pesanDiv =document.createElement("div");
 
@@ -44,7 +46,7 @@
 
 
         
-        const hr = document.createElement("hr");
+        
 
         pesanDiv.appendChild(nameParagraph);
         pesanDiv.appendChild(numberParagraph);
@@ -53,12 +55,31 @@
         pesanDiv.appendChild(datereturnParagraph);
         pesanDiv.appendChild(waktukembaliParagraph);
         pesanDiv.appendChild(locationParagraph);
-        pesanDiv.appendChild(hr);
+        
 
         listDiv.append(pesanDiv);
 
         });
     });
+
+    
+    ipcRenderer.on('mobil:response:list', (event, arg) => {
+        
+        const labelDiv = document.getElementById("mobilpilihan");
+       
+        arg.forEach(arg =>{
+        daftarDiv =document.createElement("div");
+        const mobilParagraph = document.createElement("p");
+        mobilParagraph.innerHTML = `Mobil: ${arg.pilihan}`;
+        
+
+        const hr = document.createElement("hr");
+        daftarDiv.appendChild(mobilParagraph);
+        daftarDiv.appendChild(hr);
+        labelDiv.append(daftarDiv);
+
+        });
+        });
     </script>
 </body>
 </html>

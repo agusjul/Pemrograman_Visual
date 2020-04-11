@@ -9,7 +9,7 @@
 <body>
     <div class="row">
         <div class="column">
-            <h1>Opel Corsa</h1>
+            <h1 id="mobil" value="Opel Corsa">Opel Corsa</h1>
             <img src="./img/opel_corsa_2004.jpg" alt="">
         </div>
         <div class="column">
@@ -36,10 +36,23 @@
                     <td>No</td>
                 </tr>
             </table>
-            <input type="submit" value="Pesan Mobil Ini">
+            <input  id="sumbit" type="submit" value="Pesan Mobil Ini">
         </div>
     </div>
 
-    
+    <script>
+        const electron = require("electron");
+        const { ipcRenderer } = electron;
+        
+        
+
+        mobilSendName = document.getElementById("sumbit");
+        mobilSendName.addEventListener("click", () =>{
+            let data = {
+                pilihan: document.getElementById("mobil").innerHTML
+            };
+            ipcRenderer.send("nameMsg", data);
+        }, false);
+    </script>
 </body>
 </html>

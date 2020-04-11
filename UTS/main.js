@@ -18,6 +18,7 @@ let pembayaranWindow;
 let opelcorsaWindow;
 
 let daftarsewamobil = [];
+let mobilopel = [];
 
 app.on("ready", () => {
     todayWindow = new BrowserWindow({
@@ -132,9 +133,19 @@ ipcMain.on("sewa:create", (event, pesan) => {
     console.log(daftarsewamobil);
 });
 
+ipcMain.on("nameMsg", (event, pesan) => {
+    mobilopel.push(pesan)
+   console.log(mobilopel);
+});
+
 ipcMain.on("sewa:request:list", event => {
     daftarpesanWindow.webContents.send('sewa:response:list', daftarsewamobil)
 });
+
+ipcMain.on("mobil:request:list", event => {
+    daftarpesanWindow.webContents.send('mobil:response:list', mobilopel)
+});
+
 
 
 // Menu Template
