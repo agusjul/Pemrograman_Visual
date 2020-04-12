@@ -1,6 +1,5 @@
 const electron = require('electron')
 
-
 const {
     app,
     BrowserWindow,
@@ -9,11 +8,6 @@ const {
 } = electron;
 
 let todayWindow;
-let pesanbaruWindow;
-let daftarpesanWindow;
-let daftarmobilWindow;
-let pembayaranWindow;
-
 
 let opelcorsaWindow;
 
@@ -40,67 +34,7 @@ app.on("ready", () => {
 
 });
 
-// Membuat Jendela
-
-const pesanbaruWindowCreator = () => {
-    pesanbaruWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration : true
-        },
-        width: 600,
-        height: 400,
-        title: "Pesan Baru"
-    });
-
-    pesanbaruWindow.setMenu(null);
-    pesanbaruWindow.loadURL(`file://${__dirname}/sewabaru.html`);
-    pesanbaruWindow.on("closed", () => (pesanbaruWindow = null));
-};
-
-const daftarpesanWindowCreator = () => {
-    daftarpesanWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration : true
-        },
-        width: 600,
-        height: 400,
-        title: "Daftar Sewa"
-    });
-
-    daftarpesanWindow.setMenu(null);
-    daftarpesanWindow.loadURL(`file://${__dirname}/daftarsewa.html`);
-    daftarpesanWindow.on("closed", () => (daftarpesanWindow = null));
-};
-
-const daftarmobilWindowCreator = () => {
-    daftarmobilWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration : true
-        },
-        width: 600,
-        height: 400,
-        title: "Daftar Mobil"
-    });
-
-    daftarmobilWindow.setMenu(null);
-    daftarmobilWindow.loadURL(`file://${__dirname}/daftarmobil.html`);
-    daftarmobilWindow.on("closed", () => (daftarmobilWindow = null));
-};
-
-const pembayaranWindowCreator = () => {
-    pembayaranWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration : true
-        },
-        width: 600,
-        height: 400,
-        title: "Pembayaran"
-    });
-
-    pembayaranWindow.setMenu(null);
-    pembayaranWindow.loadURL(`file://${__dirname}/pembayaran.html`);
-    pembayaranWindow.on("closed", () => (pembayaranWindow = null));
-};
+//Membuat jendela
 
 const opelcorsaWindowCreator = () => {
     opelcorsaWindow = new BrowserWindow({
@@ -118,15 +52,14 @@ const opelcorsaWindowCreator = () => {
 };
 
 // Menu Template
-
+//Membuka jendela pesan baru
 ipcMain.on("booknow", function(){
-    pesanbaruWindowCreator()
+    todayWindow.loadURL(`file://${__dirname}/sewabaru.html`);
 })
 
 ipcMain.on("opelcorsa", function(){
     opelcorsaWindowCreator()
 })
-
 
 ipcMain.on("sewa:create", (event, pesan) => {
     daftarsewamobil.push(pesan);
@@ -135,15 +68,16 @@ ipcMain.on("sewa:create", (event, pesan) => {
 
 ipcMain.on("nameMsg", (event, pesan) => {
     mobilopel.push(pesan)
-   console.log(mobilopel);
+    console.log(mobilopel);
+    todayWindow.loadURL(`file://${__dirname}/pembayaran.html`);
 });
 
 ipcMain.on("sewa:request:list", event => {
-    daftarpesanWindow.webContents.send('sewa:response:list', daftarsewamobil)
+    todayWindow.webContents.send('sewa:response:list', daftarsewamobil)
 });
 
 ipcMain.on("mobil:request:list", event => {
-    daftarpesanWindow.webContents.send('mobil:response:list', mobilopel)
+    todayWindow.webContents.send('mobil:response:list', mobilopel)
 });
 
 
@@ -152,11 +86,9 @@ ipcMain.on("mobil:request:list", event => {
 
 const menuTemplate = [{
         label : "Beranda",
-        submenu :[{
-            label : "Sewa Mobil",
-            
+        click(){
+            todayWindow.loadURL(`file://${__dirname}/index.html`);  
         }
-        ]
     },
 
     {
@@ -164,13 +96,13 @@ const menuTemplate = [{
         submenu:[{
             label: "Pesan Baru",
             click(){
-                pesanbaruWindowCreator()
+                todayWindow.loadURL(`file://${__dirname}/sewabaru.html`);
             }
         },
         {
             label: "Daftar Pesanan",
             click(){
-                daftarpesanWindowCreator()
+                todayWindow.loadURL(`file://${__dirname}/daftarsewa.html`);
             }
         },
         ]
@@ -181,13 +113,13 @@ const menuTemplate = [{
         submenu:[{
             label: "Daftar Mobil",
             click(){
-                daftarmobilWindowCreator()
+                todayWindow.loadURL(`file://${__dirname}/daftarmobil.html`);
             }
         },
         {
             label: "Pembayaran",
             click(){
-                pembayaranWindowCreator()
+                todayWindow.loadURL(`file://${__dirname}/pembayaran.html`);
             }
         },
         ]

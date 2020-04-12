@@ -37,6 +37,7 @@
                 </tr>
             </table>
             <input  id="sumbit" type="submit" value="Pesan Mobil Ini">
+            <input type="button" value="Kembali" onclick="kembali()">
         </div>
     </div>
 
@@ -44,7 +45,11 @@
         const electron = require("electron");
         const { ipcRenderer } = electron;
         
-        
+        function kembali(){
+            const remote = require('electron').remote
+            let w = remote.getCurrentWindow()
+            w.close()
+        }
 
         mobilSendName = document.getElementById("sumbit");
         mobilSendName.addEventListener("click", () =>{
@@ -52,6 +57,13 @@
                 pilihan: document.getElementById("mobil").innerHTML
             };
             ipcRenderer.send("nameMsg", data);
+
+         
+            const remote = require('electron').remote
+            let w = remote.getCurrentWindow()
+            w.close()
+        
+
         }, false);
     </script>
 </body>
