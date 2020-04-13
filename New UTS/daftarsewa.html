@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Halaman Daftar Sewa</h1>
+    <div id="daftarsewa"></div>
+    <div id="mobilpilihan"></div>
+
+
+
+    <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("sewa:request:list");
+        
+        ipcRenderer.on('sewa:response:list', (event, pesan) => {
+        const listDiv = document.getElementById("daftarsewa");
+
+        pesan.forEach(pesan => {
+        const pesanDiv =document.createElement("div");
+
+        const nameParagraph = document.createElement("p");
+        nameParagraph.innerHTML = `Name: ${pesan.name}`;
+
+        const numberParagraph = document.createElement("p")
+        numberParagraph.innerHTML = `No. Telepon: ${pesan.number}`;
+
+        const daterentParagraph = document.createElement("p")
+        daterentParagraph.innerHTML = `Tanggal Disewa: ${pesan.daterent}`;
+
+        const waktusewaParagraph = document.createElement("p")
+        waktusewaParagraph.innerHTML = `Waktu Sewa: ${pesan.waktusewa}`;
+        
+        const datereturnParagraph = document.createElement("p")
+        datereturnParagraph.innerHTML = `Tanggal Kembali: ${pesan.datereturn}`;
+
+        const waktukembaliParagraph = document.createElement("p")
+        waktukembaliParagraph.innerHTML = `Waktu Kembali: ${pesan.waktukembali}`;
+        
+        const locationParagraph = document.createElement("p")
+        locationParagraph.innerHTML = `Lokasi: ${pesan.location}`;
+
+        const jenismobilParagraph = document.createElement("p")
+        jenismobilParagraph.innerHTML = `Jenis Mobil : ${pesan.jenismobil}`;
+       
+        
+        const garisParagraph = document.createElement("hr");
+
+        pesanDiv.appendChild(nameParagraph);
+        pesanDiv.appendChild(numberParagraph);
+        pesanDiv.appendChild(daterentParagraph);
+        pesanDiv.appendChild(waktusewaParagraph);
+        pesanDiv.appendChild(datereturnParagraph);
+        pesanDiv.appendChild(waktukembaliParagraph);
+        pesanDiv.appendChild(locationParagraph);
+        pesanDiv.appendChild(jenismobilParagraph);
+        pesanDiv.appendChild(garisParagraph);
+
+        listDiv.append(pesanDiv);
+
+        });
+    });
+
+    
+    // ipcRenderer.on('mobil:response:list', (event, arg) => {
+        
+    //     const labelDiv = document.getElementById("mobilpilihan");
+       
+    //     arg.forEach(arg =>{
+    //     const daftarDiv =document.createElement("div");
+    //     const mobilParagraph = document.createElement("h1");
+    //     mobilParagraph.innerHTML = `Mobil: ${arg.pilihan}`;
+        
+
+    //     const hr = document.createElement("hr");
+    //     daftarDiv.appendChild(mobilParagraph);
+    //     daftarDiv.appendChild(hr);
+    //     labelDiv.append(daftarDiv);
+
+    //     });
+    //     });
+    </script>
+</body>
+</html>

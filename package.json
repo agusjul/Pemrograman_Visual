@@ -1,0 +1,19 @@
+{
+  "name": "pemrograman_visual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsand8813/Pemrograman_Visual.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsand8813/Pemrograman_Visual/issues"
+  },
+  "homepage": "https://github.com/bsand8813/Pemrograman_Visual#readme"
+}
