@@ -8,11 +8,15 @@ const {
 } = electron;
 
 let todayWindow;
+let pesanbaruWindow;
+let daftarmobilWindow;
 
-let opelcorsaWindow;
 
-let daftarsewamobil = [];
-let mobilopel = [];
+
+var daftarsewamobil = [];
+var daftarbayar = [];
+
+
 
 app.on("ready", () => {
     todayWindow = new BrowserWindow({
@@ -36,49 +40,85 @@ app.on("ready", () => {
 
 //Membuat jendela
 
-const opelcorsaWindowCreator = () => {
-    opelcorsaWindow = new BrowserWindow({
+const daftarmobilWindowCreator = () => {
+    daftarmobilWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration : true
         },
         width: 600,
         height: 400,
-        title: "Opel Corsa"
+        title: "Daftar Mobil"
     });
 
-    opelcorsaWindow.setMenu(null);
-    opelcorsaWindow.loadURL(`file://${__dirname}/./infomobil/opelcorsa.html`);
-    opelcorsaWindow.on("closed", () => (opelcorsaWindow = null));
+    daftarmobilWindow.setMenu(null);
+    daftarmobilWindow.loadURL(`file://${__dirname}/daftarmobil.html`);
+    daftarmobilWindow.on("closed", () => (daftarmobilWindow = null));
 };
+
+const pesanbaruWindowCreator = () => {
+    pesanbaruWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration : true
+        },
+        width: 600,
+        height: 400,
+        title: "Daftar Mobil"
+    });
+
+    pesanbaruWindow.setMenu(null);
+    pesanbaruWindow.loadURL(`file://${__dirname}/sewabaru.html`);
+    pesanbaruWindow.on("closed", () => (pesanbaruWindow = null));
+};
+
+
+
+
 
 // Menu Template
 //Membuka jendela pesan baru
+
+ipcMain.on('mobilsewa', (event, arg) =>{
+    console.log(arg);
+    todayWindow.webContents.send('update', arg);
+});
+
 ipcMain.on("booknow", function(){
     todayWindow.loadURL(`file://${__dirname}/sewabaru.html`);
-})
+});
+
+ipcMain.on("carimobil", function(){
+    daftarmobilWindowCreator();
+});
 
 ipcMain.on("opelcorsa", function(){
-    opelcorsaWindowCreator()
-})
+    opelcorsaWindowCreator();
+});
 
 ipcMain.on("sewa:create", (event, pesan) => {
     daftarsewamobil.push(pesan);
     console.log(daftarsewamobil);
 });
 
-ipcMain.on("nameMsg", (event, pesan) => {
-    mobilopel.push(pesan)
-    console.log(mobilopel);
-    todayWindow.loadURL(`file://${__dirname}/pembayaran.html`);
+
+ipcMain.on("pembayaran", (event, pesan) => {
+    daftarbayar.push(pesan)
+    console.log(daftarbayar);
+    todayWindow.loadURL(`file://${__dirname}/daftarbayar.html`);
 });
+
+ipcMain.on("bayar:request:list", event =>{
+    todayWindow.webContents.send('bayar:response:list', daftarbayar)
+});
+
+
 
 ipcMain.on("sewa:request:list", event => {
     todayWindow.webContents.send('sewa:response:list', daftarsewamobil)
 });
 
-ipcMain.on("mobil:request:list", event => {
-    todayWindow.webContents.send('mobil:response:list', mobilopel)
-});
+// ipcMain.on("mobil:request:list", event => {
+//     todayWindow.webContents.send('mobil:response:list', mobilopel)
+// });
 
 
 
@@ -119,7 +159,7 @@ const menuTemplate = [{
         {
             label: "Pembayaran",
             click(){
-                todayWindow.loadURL(`file://${__dirname}/pembayaran.html`);
+                todayWindow.loadURL(`file://${__dirname}/daftarbayar.html`);
             }
         },
         ]

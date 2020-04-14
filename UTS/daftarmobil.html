@@ -11,116 +11,79 @@
     <h3>Hatch back</h3>
     <div class="row">
         <div class="column">
-           <div class="card" onclick="opelcorsa()">
-                <p>Opel Corsa</p>
+           <div class="card" onclick="mobilcorsa()" id="mobilcorsa">
+                <p id="corsa">Opel Corsa</p>
                 <img src="./src/opel_corsa_2004.jpg" alt="">
             </div>
         </div>
         <div class="column">
-            <div class="card">
-                <p>Honda Civic</p>
+            <div class="card" onclick="mobilhondacivic()" id="mobilhondacivic">
+                <p id="hondacivic">Honda Civic</p>
                 <img src="./src/honda_civic_2006.jpg" alt="">
             </div>
         </div>
         <div class="column">
-            <div class="card">
-                <p>Hyundai I30</p>
+            <div class="card" onclick="mobilhyundai()" id="mobilhyundai">
+                <p id="hyundai">Hyundai I30</p>
                 <img src="./src/hyundai_i30_2008.jpg" alt="">
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <p>Audi A3</p>
-                <img src="./src/audi_a3_2003.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>Mercedez A class</p>
-                <img src="./src/mercedesbenz_aclass.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-            <p>VW Golf</p>
-            <img src="./src/vw_golf_2008.jpg" alt="">
-            </div>
-        </div>
-    </div>
-
-    <h3>Saloon</h3>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <p>Volvo S60</p>
-                <img src="./src/volvo_s60_2010.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>Honda Accord</p>
-                <img src="./src/honda_accord_2008.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>VW Passat</p>
-                <img src="./src/vw_passat_2005.jpg" alt="">
-            </div>
-        </div>
-    </div>
-   
-    <h3>People Carrier</h3>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <p>Toyota Corolla</p>
-                <img src="./src/toyota_corolla_spacio_2007.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>Citroen Evaison</p>
-                <img src="./src/citroen_evasion_1998.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>VW Touran</p>
-                <img src="./src/vw_touran_2008.jpg" alt="">
-            </div>
-        </div>
-    </div>
-
-    <h3>SUV</h3>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <p>Toyota Landcruiser</p>
-                <img src="./src/toyota_landcruiser100_2005.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>Nissan Hashqai</p>
-                <img src="./src/nissan_qashqai_2008.jpg" alt="">
-            </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <p>Audi Q7</p>
-                <img src="./src/audi_Q7_2007.jpg" alt="">
-            </div>
-        </div>
-    </div>
-
+    
     <script>
-        function opelcorsa(){
-         const { ipcRenderer } = require('electron');
-         ipcRenderer.send("opelcorsa"); 
+
+        function mobilcorsa(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("mobilcorsa").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("corsa").innerHTML
+                };
+                ipcRenderer.send('mobilsewa', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
         }
+
+        function mobilhondacivic(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("mobilhondacivic").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("hondacivic").innerHTML
+                };
+                ipcRenderer.send('mobilsewa', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function mobilhyundai(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("mobilhyundai").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("hyundai").innerHTML
+                };
+                ipcRenderer.send('mobilsewa', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+
     </script>
 </body>
 </html>

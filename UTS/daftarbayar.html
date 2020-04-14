@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./daftarsewa.css">
+</head>
+<body>
+    <h1>Halaman Daftar Sewa</h1>
+    <div id="pembayaran"></div>
+
+
+
+
+    <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("bayar:request:list");
+        
+        ipcRenderer.on('bayar:response:list', (event, pesan) => {
+        const listDiv = document.getElementById("pembayaran");
+
+        pesan.forEach(pesan => {
+        const pesanDiv =document.createElement("div");
+        pesanDiv.setAttribute("class","datadiri");
+
+        const bankParagraph = document.createElement("p");
+        bankParagraph.innerHTML = `Bank: ${pesan.bank}`;
+
+        const norekParagraph = document.createElement("p")
+        norekParagraph.innerHTML = `No. Rekening: ${pesan.norek}`;
+  
+
+        let date_ob = new Date();
+        // current date
+        // adjust 0 before single digit date
+        let date = ("0" + date_ob.getDate()).slice(-2);
+
+        // current month
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+        // current year
+        let year = date_ob.getFullYear();
+
+        // current hours
+        let hours = date_ob.getHours();
+
+        // current minutes
+        let minutes = date_ob.getMinutes();
+
+        const jamParagraph = document.createElement("p");
+        jamParagraph.innerHTML = `Waktu : ${hours+":"+minutes+"  [ "+date+"/"+month+"/"+year+" ]"}`;
+
+        pesanDiv.appendChild(bankParagraph);
+        pesanDiv.appendChild(norekParagraph);
+        pesanDiv.appendChild(jamParagraph);
+
+        listDiv.append(pesanDiv);
+
+        });
+    });
+
+    
+    // ipcRenderer.on('mobil:response:list', (event, arg) => {
+        
+    //     const labelDiv = document.getElementById("mobilpilihan");
+       
+    //     arg.forEach(arg =>{
+    //     const daftarDiv =document.createElement("div");
+    //     const mobilParagraph = document.createElement("h1");
+    //     mobilParagraph.innerHTML = `Mobil: ${arg.pilihan}`;
+        
+
+    //     const hr = document.createElement("hr");
+    //     daftarDiv.appendChild(mobilParagraph);
+    //     daftarDiv.appendChild(hr);
+    //     labelDiv.append(daftarDiv);
+
+    //     });
+    //     });
+    </script>
+</body>
+</html>

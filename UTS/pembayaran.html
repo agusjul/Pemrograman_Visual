@@ -7,17 +7,39 @@
 </head>
 <body>
     <h1>Pembayaran</h1>
-    <form action="">
+    <form id="form">
         <label for="norek">Pilih Bank :</label>
-        <select id="bank" name="norek">
+        <select id="bank" name="bank">
             <option value="BNI">BNI</option>
             <option value="BRI">BRI</option>
             <option value="Mandiri">Mandiri</option>
             <option value="BCA">BCA</option>
         </select><br><br>
         <label for="number">No.Rekening :</label>
-        <input type="number" name="no"> <br><br>
-        <input type="submit" value="Bayar">
+        <input type="number" id="norek" name="norek"> <br><br>
+        <input type="submit" name="tombol" value="Bayar" onclick="bayarsekarang()">
     </form>
+
+    <script>
+        function bayarsekarang(){
+                const electron = require("electron");
+                const { ipcRenderer, dialog } = electron;
+
+                const form = document.getElementById("form");
+                const elements = {};
+            
+                form.addEventListener("submit", event => {
+                    event.preventDefault();
+
+                    for (let i = 0; i < form.elements.length; i++){
+                        if (form.elements[i].type !== "submit")
+                        elements[form.elements[i].name] = form.elements[i].value;
+                    }
+
+                    ipcRenderer.send("pembayaran", elements);
+                }); 
+
+            }
+    </script>
 </body>
 </html>

@@ -21,16 +21,35 @@
         <label for="time">Waktu Kembali :</label> <br>
         <input type="time" name="waktukembali"> <br><br>
         <label for="location">Lokasi : </label><br>
-        <input type="text" name="location">
+        <input type="text" name="location"><br><br>
+        <label for="mobil">Mobil :</label><br><br>
+        <input type="text" name="jenismobil" id="sementara"> <br><br>
+        <button type="button" name="tombol" value="Cari Mobil" onclick="carimobil()">Cari Mobil</button>
         <br><br>
-        <input type="submit" value="Cari Mobil" onclick="window.location.href='./daftarmobil.html'">
+        <input type="submit" value="Pesan Sekarang" onclick="window.location.href='./pembayaran.html'">
     </form>
+
+   
 
     <script>
         const electron = require("electron");
         const{
             ipcRenderer
         } = electron;
+
+
+        //Membuka jendela daftar mobil
+        function carimobil(){
+         const { ipcRenderer } = require('electron');
+         ipcRenderer.send("carimobil"); 
+        }
+
+
+        //update nama mobil
+        ipcRenderer.on('update', (event, arg) => {
+            let kalimat = document.getElementById("sementara");
+            kalimat.value = arg.pilihan;
+        });
 
         const form = document.getElementById("form");
         const elements = {};

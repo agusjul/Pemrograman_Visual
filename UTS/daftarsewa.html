@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./daftarsewa.css">
 </head>
 <body>
     <h1>Halaman Daftar Sewa</h1>
@@ -11,17 +12,18 @@
     <div id="mobilpilihan"></div>
 
 
+
     <script>
         const electron = require("electron");
         const {ipcRenderer} = electron;
         ipcRenderer.send("sewa:request:list");
-        ipcRenderer.send("mobil:request:list");
         
         ipcRenderer.on('sewa:response:list', (event, pesan) => {
         const listDiv = document.getElementById("daftarsewa");
 
         pesan.forEach(pesan => {
         const pesanDiv =document.createElement("div");
+        pesanDiv.setAttribute("class","datadiri");
 
         const nameParagraph = document.createElement("p");
         nameParagraph.innerHTML = `Name: ${pesan.name}`;
@@ -44,7 +46,9 @@
         const locationParagraph = document.createElement("p")
         locationParagraph.innerHTML = `Lokasi: ${pesan.location}`;
 
-
+        const jenismobilParagraph = document.createElement("p")
+        jenismobilParagraph.innerHTML = `Jenis Mobil : ${pesan.jenismobil}`;
+       
         
         
 
@@ -55,7 +59,7 @@
         pesanDiv.appendChild(datereturnParagraph);
         pesanDiv.appendChild(waktukembaliParagraph);
         pesanDiv.appendChild(locationParagraph);
-        
+        pesanDiv.appendChild(jenismobilParagraph);
 
         listDiv.append(pesanDiv);
 
@@ -63,23 +67,23 @@
     });
 
     
-    ipcRenderer.on('mobil:response:list', (event, arg) => {
+    // ipcRenderer.on('mobil:response:list', (event, arg) => {
         
-        const labelDiv = document.getElementById("mobilpilihan");
+    //     const labelDiv = document.getElementById("mobilpilihan");
        
-        arg.forEach(arg =>{
-        daftarDiv =document.createElement("div");
-        const mobilParagraph = document.createElement("p");
-        mobilParagraph.innerHTML = `Mobil: ${arg.pilihan}`;
+    //     arg.forEach(arg =>{
+    //     const daftarDiv =document.createElement("div");
+    //     const mobilParagraph = document.createElement("h1");
+    //     mobilParagraph.innerHTML = `Mobil: ${arg.pilihan}`;
         
 
-        const hr = document.createElement("hr");
-        daftarDiv.appendChild(mobilParagraph);
-        daftarDiv.appendChild(hr);
-        labelDiv.append(daftarDiv);
+    //     const hr = document.createElement("hr");
+    //     daftarDiv.appendChild(mobilParagraph);
+    //     daftarDiv.appendChild(hr);
+    //     labelDiv.append(daftarDiv);
 
-        });
-        });
+    //     });
+    //     });
     </script>
 </body>
 </html>
