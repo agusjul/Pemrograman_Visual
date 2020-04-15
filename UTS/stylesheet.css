@@ -3,32 +3,57 @@
    
   }
 
-body{
+body,html{
+    height: 100%;
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.kolom{
+    padding: 100px 70px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("./src/erik-nielsen-G8po0T4ym98-unsplash.jpg");
+}
+
 img {
     height: auto;
     width: 100%;
 }
 
 .tombol {
+    margin-top: 20px;
     width: 250px;
-    height: 80px;
+    height: 50px;
     border-radius: 80px;
     font-size: 24px;
-    background-color: dodgerblue;
+    background-color: teal;
     color: white;
     border: none;
+    transition: 0.3s;
 }
 
-.kolom{
-    display: flex;
+.tombol:hover {
+    background-color: dodgerblue;
+    color: white;
 }
 
-.kanan{
-    flex: 60%;
+div.kiri{
+   position: absolute;
+   color: white;
+   font-weight: 200;
 }
 
-.kiri{
-    flex: 40%;
+div.kanan{
+    background-color: black;
+}
+
+p{
+    font-size: 20px;
+}
+
+br{
+    margin-bottom: 10px;
 }

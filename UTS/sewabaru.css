@@ -1,0 +1,12 @@
+#form{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
+    padding: 16px;
+    background-color: rgb(161, 67, 67);
+    border-radius: 20px;
+}
+
+form input{
+    border-radius: 10px;
+    border: none;
+    
+}
