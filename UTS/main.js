@@ -46,7 +46,7 @@ const daftarmobilWindowCreator = () => {
             nodeIntegration : true
         },
         width: 600,
-        height: 400,
+        height: 600,
         title: "Daftar Mobil"
     });
 
@@ -81,6 +81,10 @@ ipcMain.on('mobilsewa', (event, arg) =>{
     console.log(arg);
     todayWindow.webContents.send('update', arg);
 });
+
+ipcMain.on("datakirim", function(){
+    todayWindow.loadURL(`file://${__dirname}/pembayaran.html`)
+})
 
 ipcMain.on("booknow", function(){
     todayWindow.loadURL(`file://${__dirname}/sewabaru.html`);
@@ -153,7 +157,7 @@ const menuTemplate = [{
         submenu:[{
             label: "Daftar Mobil",
             click(){
-                todayWindow.loadURL(`file://${__dirname}/daftarmobil.html`);
+                todayWindow.loadURL(`file://${__dirname}/viewmobil.html`);
             }
         },
         {

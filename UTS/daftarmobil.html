@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="./stylemobil.css">
 </head>
 <body>
-    <h1>Halaman Daftar Mobil</h1>
-    <h3>Hatch back</h3>
+    <h1>Daftar Mobil</h1>
     <div class="row">
         <div class="column">
            <div class="card" onclick="mobilcorsa()" id="mobilcorsa">
@@ -28,7 +27,27 @@
                 <img src="./src/hyundai_i30_2008.jpg" alt="">
             </div>
         </div>
+
+        <div class="column">
+            <div class="card" onclick="vwgolf()" id="mobilvw">
+                 <p id="vwgolf">VW Golf</p>
+                 <img src="./src/vw_golf_2008.jpg" alt="">
+             </div>
+         </div>
+         <div class="column">
+             <div class="card" onclick="mobiltoyota()" id="mobiltoyotacorolla">
+                 <p id="toyotacorolla">Toyota Corolla</p>
+                 <img src="./src/toyota_corolla_spacio_2007.jpg" alt="">
+             </div>
+         </div>
+         <div class="column">
+             <div class="card" onclick="mobilcitroen()" id="mobilcitroenevasion">
+                 <p id="citroenevasion">Citroen Evasion</p>
+                 <img src="./src/citroen_evasion_1998.jpg" alt="">
+             </div>
+         </div>
     </div>
+    
     
     <script>
 
@@ -73,6 +92,57 @@
             document.getElementById("mobilhyundai").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("hyundai").innerHTML
+                };
+                ipcRenderer.send('mobilsewa', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function vwgolf(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("mobilvw").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("vwgolf").innerHTML
+                };
+                ipcRenderer.send('mobilsewa', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function mobiltoyota(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("mobiltoyotacorolla").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("toyotacorolla").innerHTML
+                };
+                ipcRenderer.send('mobilsewa', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function mobilcitroen(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("mobilcitroenevasion").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("citroenevasion").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      

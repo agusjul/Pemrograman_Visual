@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pembayaran.css">
     <title>Document</title>
 </head>
 <body>
     <h1>Pembayaran</h1>
+
     <form id="form">
-        <label for="norek">Pilih Bank :</label>
-        <select id="bank" name="bank">
-            <option value="BNI">BNI</option>
-            <option value="BRI">BRI</option>
-            <option value="Mandiri">Mandiri</option>
-            <option value="BCA">BCA</option>
-        </select><br><br>
-        <label for="number">No.Rekening :</label>
-        <input type="number" id="norek" name="norek"> <br><br>
-        <input type="submit" name="tombol" value="Bayar" onclick="bayarsekarang()">
+        <div class="bayar">
+            <h4>Total Bayar : <span>Rp.200,000</span></h4>
+            <label for="norek">Pilih Bank :</label> <br>
+            <select id="bank" name="bank">
+                <option value="BNI">BNI</option>
+                <option value="BRI">BRI</option>
+                <option value="Mandiri">Mandiri</option>
+                <option value="BCA">BCA</option>
+            </select><br><br>
+            <label for="number">No.Rekening :</label> <br>
+            <input type="number" id="norek" name="norek"> <br><br>
+            <input type="submit" id="submit" name="tombol" value="Bayar" onclick="bayarsekarang()">
+        </div>
     </form>
 
     <script>

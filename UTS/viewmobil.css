@@ -5,23 +5,23 @@
     padding: 0 10px;
   }
   
-  body{
+ 
+  .row {
+    margin-left: 10px;   
+    flex: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;  
+    }
+  
+body{
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("./src/erik-nielsen-G8po0T4ym98-unsplash.jpg");
 }
-
-.row {
-  margin-left: 10px;   
-  flex: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
-  padding: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 20px;  
-  }
-  
 
   .row:after {
     content: "";
@@ -34,9 +34,9 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
     padding: 16px;
     text-align: center;
-    background-color: white;    
-    margin-top: 20px;
+    background-color: white;
     border-radius: 20px;  
+    margin-top: 20px;
   }
   
   @media screen and (max-width: 600px) {
@@ -44,6 +44,7 @@
       width: 100%;
       display: block;
       margin-bottom: 20px;
+      
     }
   }
 
@@ -53,5 +54,8 @@
 
 h1{
     text-align: center;
-    color: white;
+}
+
+h1{
+    color : white;
 }

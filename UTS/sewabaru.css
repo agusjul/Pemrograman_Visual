@@ -1,12 +1,105 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #form{
+    padding: 16px;
+    background-color:rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+input{
+    border-radius: 8px;
+    width: 90%;
+    height: 30px;
+    background-color:  rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+input:focus{
+    padding-left: 10px;
+    border: 2px solid dodgerblue;  
+    background-color: rgba(0, 0, 0, 0.05);  
+    outline: none !important;
+}
+
+div.waktu{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+div.waktusewa{
+    flex: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
     padding: 16px;
-    background-color: rgb(161, 67, 67);
+    background-color: white;
     border-radius: 20px;
 }
 
-form input{
-    border-radius: 10px;
+body{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("./src/erik-nielsen-G8po0T4ym98-unsplash.jpg");
+}
+
+div.waktukembali{ 
+    margin-left: 10px;   
+    flex: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
+    padding: 16px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+div.informasi input{
+    width: 90%;
+}
+
+div.informasi { 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
+    padding: 16px;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+div.mobil { 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
+    padding: 16px;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+div.mobil button{
+    margin-left: 5px;
+    margin-top: 10px;
+    height: 30px;
+    width: auto;
+    border-radius: 8px;
     border: none;
-    
+    background-color: dodgerblue;
+    color: white;
+
+}
+
+input#sumbit {
+    margin-top: 10px;
+    height: auto;
+    width: 350px;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 30px;
+    font-weight: bold;
+    color: dodgerblue;
+    background-color: white;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    padding: 50px;
 }

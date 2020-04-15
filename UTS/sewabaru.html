@@ -7,29 +7,36 @@
     <link rel="stylesheet" href="./sewabaru.css">
 </head>
 <body>
-    <h1>Halaman Pesan Baru</h1>
+    <h1>Lengkapi Form dibawah Untuk <br>Dapat Meminjam</h1>
     <form id="form" action="./daftarmobil.html">
         <div class="informasi">
             <label for="name"> Nama : </label><br>
-            <input type="text" name="name" required><br><br>
-            <label for="number">No. Telepon</label><br>
-            <input type="number" name="number" required><br><br>
+            <input type="text" id="nama" name="name" onkeyup="success()" required><br><br>
+            <label for="number">No. Telepon :</label> <br>
+            <input type="number" name="number" required><br><br> 
+            <label for="location">Lokasi : </label> <br>
+            <input type="text" name="location" required><br><br>
         </div>
-        <label for="date">Tanggal Disewa :</label> <br>
-        <input type="date" name="daterent" placeholder="YYYY-MM-DD"> <br><br>
-        <label for="time">Waktu Disewa :</label> <br>
-        <input type="time" name="waktusewa"> <br> <br>
-        <label for="date">Tanggal Kembali : </label><br>        
-        <input type="date" name="datereturn" placeholder="YYYY-MM-DD"><br><br>
-        <label for="time">Waktu Kembali :</label> <br>
-        <input type="time" name="waktukembali"> <br><br>
-        <label for="location">Lokasi : </label><br>
-        <input type="text" name="location"><br><br>
-        <label for="mobil">Mobil :</label><br><br>
-        <input type="text" name="jenismobil" id="sementara"> <br><br>
-        <button type="button" name="tombol" value="Cari Mobil" onclick="carimobil()">Cari Mobil</button>
-        <br><br>
-        <input type="submit" value="Pesan Sekarang" onclick="window.location.href='./pembayaran.html'">
+        <div class="waktu">
+            <div class="waktusewa">
+                <label for="date">Tanggal Disewa :</label> <br> 
+                <input type="date" name="daterent" required> <br><br>
+                <label for="time">Waktu Disewa :</label> <br>
+                <input type="time" name="waktusewa" required> <br> <br>
+            </div>
+            <div class="waktukembali">
+                <label for="date">Tanggal Kembali : </label>   <br>    
+                <input type="date" name="datereturn" required><br><br>
+                <label for="time">Waktu Kembali :</label>  <br>
+                <input type="time" name="waktukembali" required> <br><br>
+            </div>
+        </div>
+        <div class="mobil">
+            <label for="mobil">Mobil :</label> <br>
+            <input type="text" name="jenismobil" id="sementara" required> <br>
+            <button type="button" name="tombol" value="Cari Mobil" onclick="carimobil()">Cari Mobil</button>
+        </div>
+        <input type="submit" id="sumbit" value="Pesan Sekarang" onclick="window.location.href='./pembayaran.html'">
     </form>
 
    
@@ -67,6 +74,10 @@
 
             ipcRenderer.send("sewa:create", elements);
         });
+
+
     </script>
+
+    
 </body>
 </html>
