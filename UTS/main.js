@@ -172,7 +172,10 @@ const menuTemplate = [{
    
 
     {
-        label : "Hubungi Kami",
+        label : "About us",
+        click(){
+            todayWindow.loadURL(`file://${__dirname}/about.html`);
+        }
     },
 
     {

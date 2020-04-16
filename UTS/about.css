@@ -1,0 +1,39 @@
+.cover{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("./src/erik-nielsen-G8po0T4ym98-unsplash.jpg");
+    margin-bottom: 30px;
+}
+
+img{
+    width: 150px;
+    height: auto;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); /* this adds the "card" effect */
+    padding: 10px;
+    text-align: center;
+    background-color: white;    
+    margin-top: 20px;
+    border-radius: 20px;  
+    width: 500px;
+    height: 100%;
+    margin: auto auto;
+  }
+
+.pp{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.keterangan{
+    padding: 10px;
+    font-size: 18px;
+}
