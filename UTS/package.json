@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start" : "electron ."
+    "start": "electron ."
   },
   "author": "",
   "license": "ISC"

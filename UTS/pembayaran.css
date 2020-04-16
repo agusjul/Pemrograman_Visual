@@ -26,8 +26,8 @@ input#submit {
     font-size: 18px;
     border-radius: 30px;
     font-weight: bold;
-    color: dodgerblue;
-    background-color: white;
+    color: white;
+    background-color: dodgerblue;
 }
 
 input{

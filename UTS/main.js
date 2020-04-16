@@ -1,4 +1,6 @@
-const electron = require('electron')
+const electron = require('electron');
+const { v4 : uuidv4 } = require('uuid');
+uuidv4();
 
 const {
     app,
@@ -55,20 +57,20 @@ const daftarmobilWindowCreator = () => {
     daftarmobilWindow.on("closed", () => (daftarmobilWindow = null));
 };
 
-const pesanbaruWindowCreator = () => {
-    pesanbaruWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration : true
-        },
-        width: 600,
-        height: 400,
-        title: "Daftar Mobil"
-    });
+// const pesanbaruWindowCreator = () => {
+//     pesanbaruWindow = new BrowserWindow({
+//         webPreferences: {
+//             nodeIntegration : true
+//         },
+//         width: 600,
+//         height: 400,
+//         title: "Daftar Mobil"
+//     });
 
-    pesanbaruWindow.setMenu(null);
-    pesanbaruWindow.loadURL(`file://${__dirname}/sewabaru.html`);
-    pesanbaruWindow.on("closed", () => (pesanbaruWindow = null));
-};
+//     pesanbaruWindow.setMenu(null);
+//     pesanbaruWindow.loadURL(`file://${__dirname}/sewabaru.html`);
+//     pesanbaruWindow.on("closed", () => (pesanbaruWindow = null));
+// };
 
 
 
@@ -99,12 +101,14 @@ ipcMain.on("opelcorsa", function(){
 });
 
 ipcMain.on("sewa:create", (event, pesan) => {
+    pesan["id"] = uuidv4();
     daftarsewamobil.push(pesan);
     console.log(daftarsewamobil);
 });
 
 
 ipcMain.on("pembayaran", (event, pesan) => {
+    pesan["id"] = uuidv4();
     daftarbayar.push(pesan)
     console.log(daftarbayar);
     todayWindow.loadURL(`file://${__dirname}/daftarbayar.html`);
