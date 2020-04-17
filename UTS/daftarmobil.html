@@ -12,38 +12,38 @@
         <div class="column">
            <div class="card" onclick="mobilcorsa()" id="mobilcorsa">
                 <p id="corsa">Opel Corsa</p>
-                <img src="./src/opel_corsa_2004.jpg" alt="">
+                <img id="gambarcorsa" src="file:///E:/Sample%20Documents/Perkuliahan/Semester%204/Pemrograman%20Visual/UTS/src/opel_corsa_2004.jpg" alt="">
             </div>
         </div>
         <div class="column">
             <div class="card" onclick="mobilhondacivic()" id="mobilhondacivic">
                 <p id="hondacivic">Honda Civic</p>
-                <img src="./src/honda_civic_2006.jpg" alt="">
+                <img id="gambarcivic" src="./src/honda_civic_2006.jpg" alt="">
             </div>
         </div>
         <div class="column">
             <div class="card" onclick="mobilhyundai()" id="mobilhyundai">
                 <p id="hyundai">Hyundai I30</p>
-                <img src="./src/hyundai_i30_2008.jpg" alt="">
+                <img id="gambarhyndai" src="./src/hyundai_i30_2008.jpg" alt="">
             </div>
         </div>
 
         <div class="column">
             <div class="card" onclick="vwgolf()" id="mobilvw">
                  <p id="vwgolf">VW Golf</p>
-                 <img src="./src/vw_golf_2008.jpg" alt="">
+                 <img id="gambarvw" src="./src/vw_golf_2008.jpg" alt="">
              </div>
          </div>
          <div class="column">
              <div class="card" onclick="mobiltoyota()" id="mobiltoyotacorolla">
                  <p id="toyotacorolla">Toyota Corolla</p>
-                 <img src="./src/toyota_corolla_spacio_2007.jpg" alt="">
+                 <img id="gambarcorolla" src="./src/toyota_corolla_spacio_2007.jpg" alt="">
              </div>
          </div>
          <div class="column">
              <div class="card" onclick="mobilcitroen()" id="mobilcitroenevasion">
                  <p id="citroenevasion">Citroen Evasion</p>
-                 <img src="./src/citroen_evasion_1998.jpg" alt="">
+                 <img id="gambarcitroen" src="./src/citroen_evasion_1998.jpg" alt="">
              </div>
          </div>
     </div>
@@ -57,7 +57,8 @@
         
             document.getElementById("mobilcorsa").addEventListener("click", () =>{
                 let data = {
-                    pilihan: document.getElementById("corsa").innerHTML
+                    pilihan: document.getElementById("corsa").innerHTML,
+                    gambar: document.getElementById("gambarcorsa").src
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -74,7 +75,8 @@
         
             document.getElementById("mobilhondacivic").addEventListener("click", () =>{
                 let data = {
-                    pilihan: document.getElementById("hondacivic").innerHTML
+                    pilihan: document.getElementById("hondacivic").innerHTML,
+                    gambar: document.getElementById("gambarcivic").src
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -91,7 +93,8 @@
         
             document.getElementById("mobilhyundai").addEventListener("click", () =>{
                 let data = {
-                    pilihan: document.getElementById("hyundai").innerHTML
+                    pilihan: document.getElementById("hyundai").innerHTML,
+                    gambar: document.getElementById("gambarhyndai").src
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -108,7 +111,8 @@
         
             document.getElementById("mobilvw").addEventListener("click", () =>{
                 let data = {
-                    pilihan: document.getElementById("vwgolf").innerHTML
+                    pilihan: document.getElementById("vwgolf").innerHTML,
+                    gambar: document.getElementById("gambarvw").src
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -125,7 +129,8 @@
         
             document.getElementById("mobiltoyotacorolla").addEventListener("click", () =>{
                 let data = {
-                    pilihan: document.getElementById("toyotacorolla").innerHTML
+                    pilihan: document.getElementById("toyotacorolla").innerHTML,
+                    gambar: document.getElementById("gambarcorolla").src
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -142,7 +147,8 @@
         
             document.getElementById("mobilcitroenevasion").addEventListener("click", () =>{
                 let data = {
-                    pilihan: document.getElementById("citroenevasion").innerHTML
+                    pilihan: document.getElementById("citroenevasion").innerHTML,
+                    gambar: document.getElementById("gambarcitroen").src
                 };
                 ipcRenderer.send('mobilsewa', data);
                      

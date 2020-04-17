@@ -124,10 +124,6 @@ ipcMain.on("sewa:request:list", event => {
     todayWindow.webContents.send('sewa:response:list', daftarsewamobil)
 });
 
-// ipcMain.on("mobil:request:list", event => {
-//     todayWindow.webContents.send('mobil:response:list', mobilopel)
-// });
-
 
 
 // Menu Template

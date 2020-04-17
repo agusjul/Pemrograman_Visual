@@ -34,6 +34,9 @@
         <div class="mobil">
             <label for="mobil">Mobil :</label> <br>
             <input type="text" name="jenismobil" id="sementara" required> <br>
+            <div>
+                <img src="" id="gambarmobil" alt="">
+            </div>
             <button type="button" name="tombol" value="Cari Mobil" onclick="carimobil()">Cari Mobil</button>
         </div>
         <input type="submit" id="sumbit" value="Pesan Sekarang" onclick="window.location.href='./pembayaran.html'">
@@ -59,6 +62,11 @@
         ipcRenderer.on('update', (event, arg) => {
             let kalimat = document.getElementById("sementara");
             kalimat.value = arg.pilihan;
+            //Memasukan gambar
+            let y = document.getElementById("gambarmobil");
+           // let x = document.createElement("img");
+            y.setAttribute("src", arg.gambar);
+            y.appendChild(x);
         });
 
         const form = document.getElementById("form");
