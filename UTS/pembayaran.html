@@ -30,27 +30,30 @@
     </form>
 
     <script>
-        const electron = require("electron");
+        const electron = require('electron');
         const {ipcRenderer} = electron;
         ipcRenderer.send("mobil:request:list");
 
         ipcRenderer.on('mobil:response:list', (event, arg) => {
         let mobilDiv = document.getElementById("mobilinfo");
+        console.log("disini harusnya: ",arg[0].harga);
         
+        arg.forEach(arg =>{
         const infoDiv = document.createElement("Div");
         infoDiv.setAttribute("id","mo");
 
         let HargaDiv= document.getElementById("hargamobil");
-        HargaDiv.innerHTML = `${arg.harga}`;
+        HargaDiv.innerHTML = arg.harga;
         //Memasukan gambar
         let z = document.getElementById("gambarmobil");
-        z.setAttribute("src", `${arg.gambar}`);
+        z.setAttribute("src",arg.gambar);
 
         infoDiv.appendChild(HargaDiv);
         infoDiv.appendChild(z);
 
         mobilDiv.append(infoDiv);
         });
+    })
 
         function bayarsekarang(){
                 const electron = require("electron");

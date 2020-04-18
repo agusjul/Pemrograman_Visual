@@ -20,7 +20,7 @@
         
         ipcRenderer.on('bayar:response:list', (event, pesan) => {
         const listDiv = document.getElementById("pembayaran");
-
+        console.log("disini harusnya: ",pesan);
         pesan.forEach(pesan => {
         const pesanDiv =document.createElement("div");
         pesanDiv.setAttribute("class","datadiri");

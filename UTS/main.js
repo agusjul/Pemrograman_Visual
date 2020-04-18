@@ -21,6 +21,8 @@ var daftarbayar = [];
 var datamobil= [];
 
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+
 app.on("ready", () => {
     todayWindow = new BrowserWindow({
         webPreferences: {
