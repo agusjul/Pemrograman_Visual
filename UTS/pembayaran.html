@@ -11,7 +11,11 @@
 
     <form id="form">
         <div class="bayar">
-            <h4>Total Bayar : <span>Rp.200,000</span></h4>
+            
+            <div id="mobilinfo">
+                <h4>Total Bayar : <span id="hargamobil">Rp.200,000</span></h4>
+                <img id="gambarmobil" src="" alt="">
+            </div>
             <label for="norek">Pilih Bank :</label> <br>
             <select id="bank" name="bank">
                 <option value="BNI">BNI</option>
@@ -26,6 +30,28 @@
     </form>
 
     <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("mobil:request:list");
+
+        ipcRenderer.on('mobil:response:list', (event, arg) => {
+        let mobilDiv = document.getElementById("mobilinfo");
+        
+        const infoDiv = document.createElement("Div");
+        infoDiv.setAttribute("id","mo");
+
+        let HargaDiv= document.getElementById("hargamobil");
+        HargaDiv.innerHTML = `${arg.harga}`;
+        //Memasukan gambar
+        let z = document.getElementById("gambarmobil");
+        z.setAttribute("src", `${arg.gambar}`);
+
+        infoDiv.appendChild(HargaDiv);
+        infoDiv.appendChild(z);
+
+        mobilDiv.append(infoDiv);
+        });
+
         function bayarsekarang(){
                 const electron = require("electron");
                 const { ipcRenderer, dialog } = electron;
@@ -45,6 +71,10 @@
                 }); 
 
             }
+
+
+        
+       
     </script>
 </body>
 </html>

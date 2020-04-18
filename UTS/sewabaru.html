@@ -35,11 +35,12 @@
             <label for="mobil">Mobil :</label> <br>
             <input type="text" name="jenismobil" id="sementara" required> <br>
             <div>
+                <p id="hargamobil"></p>
                 <img src="" id="gambarmobil" alt="">
             </div>
             <button type="button" name="tombol" value="Cari Mobil" onclick="carimobil()">Cari Mobil</button>
         </div>
-        <input type="submit" id="sumbit" value="Pesan Sekarang" onclick="window.location.href='./pembayaran.html'">
+        <input type="submit" id="sumbit" value="Pesan Sekarang" onclick="infomobil()//window.location.href='./pembayaran.html'">
     </form>
 
    
@@ -62,13 +63,16 @@
         ipcRenderer.on('update', (event, arg) => {
             let kalimat = document.getElementById("sementara");
             kalimat.value = arg.pilihan;
+            //Masukan harga
+            let x = document.getElementById("hargamobil");
+            x.innerHTML = arg.harga;
             //Memasukan gambar
             let y = document.getElementById("gambarmobil");
-           // let x = document.createElement("img");
             y.setAttribute("src", arg.gambar);
-            y.appendChild(x);
         });
 
+
+        //Mengirim data
         const form = document.getElementById("form");
         const elements = {};
 
@@ -80,9 +84,23 @@
                 elements[form.elements[i].name] = form.elements[i].value;
             }
 
+           
+
             ipcRenderer.send("sewa:create", elements);
         });
 
+        //Mengirim Data Mobil
+        function infomobil(){
+            const { ipcRenderer } = require('electron');
+            let info = {
+                pilihan: document.getElementById("sementara").value,
+                gambar: document.getElementById("gambarmobil").src,
+                harga: document.getElementById("hargamobil").innerHTML
+            };
+            ipcRenderer.send('infomobil', info); 
+       
+            
+        }
 
     </script>
 

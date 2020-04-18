@@ -12,6 +12,7 @@
         <div class="column">
            <div class="card" onclick="mobilcorsa()" id="mobilcorsa">
                 <p id="corsa">Opel Corsa</p>
+                <p class="hargacorsa">Rp<span id="hargacorsa">200,000</span>/hari</p>
                 <img id="gambarcorsa" src="file:///E:/Sample%20Documents/Perkuliahan/Semester%204/Pemrograman%20Visual/UTS/src/opel_corsa_2004.jpg" alt="">
             </div>
         </div>
@@ -58,7 +59,8 @@
             document.getElementById("mobilcorsa").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("corsa").innerHTML,
-                    gambar: document.getElementById("gambarcorsa").src
+                    gambar: document.getElementById("gambarcorsa").src,
+                    harga: document.getElementById("hargacorsa").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      

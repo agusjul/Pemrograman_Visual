@@ -6,7 +6,8 @@ const {
     app,
     BrowserWindow,
     Menu,
-    ipcMain
+    ipcMain,
+    ipcRenderer
 } = electron;
 
 let todayWindow;
@@ -17,7 +18,7 @@ let daftarmobilWindow;
 
 var daftarsewamobil = [];
 var daftarbayar = [];
-
+var datamobil= [];
 
 
 app.on("ready", () => {
@@ -80,9 +81,15 @@ const daftarmobilWindowCreator = () => {
 //Membuka jendela pesan baru
 
 ipcMain.on('mobilsewa', (event, arg) =>{
-    console.log(arg);
     todayWindow.webContents.send('update', arg);
 });
+
+ipcMain.on('infomobil', (event, arg) =>{
+    datamobil.push(arg);
+    console.log(datamobil);
+    todayWindow.loadURL(`file://${__dirname}/pembayaran.html`);
+});
+
 
 ipcMain.on("datakirim", function(){
     todayWindow.loadURL(`file://${__dirname}/pembayaran.html`)
@@ -118,11 +125,16 @@ ipcMain.on("bayar:request:list", event =>{
     todayWindow.webContents.send('bayar:response:list', daftarbayar)
 });
 
+ipcMain.on("mobil:request:list", event =>{
+    todayWindow.webContents.send('mobil:response:list', datamobil)
+});
 
 
 ipcMain.on("sewa:request:list", event => {
     todayWindow.webContents.send('sewa:response:list', daftarsewamobil)
 });
+
+
 
 
 
