@@ -11,7 +11,6 @@ const {
 } = electron;
 
 let todayWindow;
-let pesanbaruWindow;
 let daftarmobilWindow;
 
 
@@ -60,26 +59,6 @@ const daftarmobilWindowCreator = () => {
     daftarmobilWindow.on("closed", () => (daftarmobilWindow = null));
 };
 
-// const pesanbaruWindowCreator = () => {
-//     pesanbaruWindow = new BrowserWindow({
-//         webPreferences: {
-//             nodeIntegration : true
-//         },
-//         width: 600,
-//         height: 400,
-//         title: "Daftar Mobil"
-//     });
-
-//     pesanbaruWindow.setMenu(null);
-//     pesanbaruWindow.loadURL(`file://${__dirname}/sewabaru.html`);
-//     pesanbaruWindow.on("closed", () => (pesanbaruWindow = null));
-// };
-
-
-
-
-
-// Menu Template
 //Membuka jendela pesan baru
 
 ipcMain.on('mobilsewa', (event, arg) =>{

@@ -26,12 +26,18 @@
             <label for="number">No.Rekening :</label> <br>
             <input type="number" id="norek" name="norek"> <br><br>
             <input type="submit" id="submit" name="tombol" value="Bayar" onclick="bayarsekarang()">
+            <button id="tambahkan" onclick="tambah()" value="Tambah Mobil"></button>
         </div>
     </form>
 
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
+
+        function tambah(){
+            
+        }
+
         ipcRenderer.send("mobil:request:list");
 
         ipcRenderer.on('mobil:response:list', (event, arg) => {
