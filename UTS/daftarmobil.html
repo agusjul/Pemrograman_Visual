@@ -19,12 +19,14 @@
         <div class="column">
             <div class="card" onclick="mobilhondacivic()" id="mobilhondacivic">
                 <p id="hondacivic">Honda Civic</p>
+                <p class="hargacorsa">Rp<span id="hargacivic">200,000</span>/hari</p>
                 <img id="gambarcivic" src="./src/honda_civic_2006.jpg" alt="">
             </div>
         </div>
         <div class="column">
             <div class="card" onclick="mobilhyundai()" id="mobilhyundai">
                 <p id="hyundai">Hyundai I30</p>
+                <p class="hargacorsa">Rp<span id="hargahyundai">300,000</span>/hari</p>
                 <img id="gambarhyndai" src="./src/hyundai_i30_2008.jpg" alt="">
             </div>
         </div>
@@ -32,18 +34,21 @@
         <div class="column">
             <div class="card" onclick="vwgolf()" id="mobilvw">
                  <p id="vwgolf">VW Golf</p>
+                 <p class="hargacorsa">Rp<span id="hargavw">250,000</span>/hari</p>
                  <img id="gambarvw" src="./src/vw_golf_2008.jpg" alt="">
              </div>
          </div>
          <div class="column">
              <div class="card" onclick="mobiltoyota()" id="mobiltoyotacorolla">
                  <p id="toyotacorolla">Toyota Corolla</p>
+                 <p class="hargacorsa">Rp<span id="hargacorolla">400,000</span>/hari</p>
                  <img id="gambarcorolla" src="./src/toyota_corolla_spacio_2007.jpg" alt="">
              </div>
          </div>
          <div class="column">
              <div class="card" onclick="mobilcitroen()" id="mobilcitroenevasion">
                  <p id="citroenevasion">Citroen Evasion</p>
+                 <p class="hargacorsa">Rp<span id="hargaevasion">450,000</span>/hari</p>
                  <img id="gambarcitroen" src="./src/citroen_evasion_1998.jpg" alt="">
              </div>
          </div>
@@ -78,7 +83,8 @@
             document.getElementById("mobilhondacivic").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("hondacivic").innerHTML,
-                    gambar: document.getElementById("gambarcivic").src
+                    gambar: document.getElementById("gambarcivic").src,
+                    harga: document.getElementById("hargacivic").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -96,7 +102,8 @@
             document.getElementById("mobilhyundai").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("hyundai").innerHTML,
-                    gambar: document.getElementById("gambarhyndai").src
+                    gambar: document.getElementById("gambarhyndai").src,
+                    harga: document.getElementById("hargahyundai").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -114,7 +121,8 @@
             document.getElementById("mobilvw").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("vwgolf").innerHTML,
-                    gambar: document.getElementById("gambarvw").src
+                    gambar: document.getElementById("gambarvw").src,
+                    harga: document.getElementById("hargavw").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -132,7 +140,8 @@
             document.getElementById("mobiltoyotacorolla").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("toyotacorolla").innerHTML,
-                    gambar: document.getElementById("gambarcorolla").src
+                    gambar: document.getElementById("gambarcorolla").src,
+                    harga: document.getElementById("hargacorolla").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
@@ -150,7 +159,8 @@
             document.getElementById("mobilcitroenevasion").addEventListener("click", () =>{
                 let data = {
                     pilihan: document.getElementById("citroenevasion").innerHTML,
-                    gambar: document.getElementById("gambarcitroen").src
+                    gambar: document.getElementById("gambarcitroen").src,
+                    harga: document.getElementById("hargaevasion").innerHTML
                 };
                 ipcRenderer.send('mobilsewa', data);
                      
