@@ -92,6 +92,7 @@ ipcMain.on("sewa:create", (event, pesan) => {
     pesan["id"] = uuidv4();
     daftarsewamobil.push(pesan);
     console.log(daftarsewamobil);
+
 });
 
 

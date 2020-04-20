@@ -13,7 +13,9 @@
         <div class="bayar">
             
             <div id="mobilinfo">
-                <h4>Total Bayar : <span id="hargamobil">Rp.200,000</span></h4>
+                <p>Harga : <span id="hargamobil">Rp.200,000</span></p>
+                <p>Waktu sewa : <span id="waktusewa">0</span> </p>
+                <h3>Total Bayar : <span id="totalbayar">0</span> </h3>
                 <img id="gambarmobil" src="" alt="">
             </div>
             <label for="norek">Pilih Bank :</label> <br>
@@ -26,7 +28,6 @@
             <label for="number">No.Rekening :</label> <br>
             <input type="number" id="norek" name="norek"> <br><br>
             <input type="submit" id="submit" name="tombol" value="Bayar" onclick="bayarsekarang()">
-            <button id="tambahkan" onclick="tambah()" value="Tambah Mobil"></button>
         </div>
     </form>
 
@@ -34,15 +35,11 @@
         const electron = require('electron');
         const {ipcRenderer} = electron;
 
-        function tambah(){
-            
-        }
-
         ipcRenderer.send("mobil:request:list");
 
         ipcRenderer.on('mobil:response:list', (event, arg) => {
         let mobilDiv = document.getElementById("mobilinfo");
-        console.log("disini harusnya: ",arg[0].harga);
+        console.log("disini harusnya: ",arg[0].hari);
         
         arg.forEach(arg =>{
         const infoDiv = document.createElement("Div");
@@ -50,14 +47,23 @@
 
         let HargaDiv= document.getElementById("hargamobil");
         HargaDiv.innerHTML = arg.harga;
+        
+        //Memasukkan tanggal
+        let y =document.getElementById("waktusewa");
+        y.innerHTML = arg.hari+ ' hari';
+
+        let tot =document.getElementById("totalbayar");
+        tot.innerHTML = (parseInt(arg.harga) * parseInt(arg.hari))+',000';
         //Memasukan gambar
         let z = document.getElementById("gambarmobil");
         z.setAttribute("src",arg.gambar);
 
-        infoDiv.appendChild(HargaDiv);
-        infoDiv.appendChild(z);
+        // infoDiv.appendChild(HargaDiv);
+        // infoDiv.appendChild(y);
+        // infoDiv.appendChild(tot);
+        // infoDiv.appendChild(z);
 
-        mobilDiv.append(infoDiv);
+        // mobilDiv.append(infoDiv);
         });
     })
 
@@ -81,6 +87,7 @@
 
             }
 
+           
 
         
        

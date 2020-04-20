@@ -11,7 +11,7 @@
     <form id="form" action="./daftarmobil.html">
         <div class="informasi">
             <label for="name"> Nama : </label><br>
-            <input type="text" id="nama" name="name" onkeyup="success()" required><br><br>
+            <input type="text" id="nama" name="name" required><br><br>
             <label for="number">No. Telepon :</label> <br>
             <input type="number" name="number" required><br><br> 
             <label for="location">Lokasi : </label> <br>
@@ -20,13 +20,13 @@
         <div class="waktu">
             <div class="waktusewa">
                 <label for="date">Tanggal Disewa :</label> <br> 
-                <input type="date" name="daterent" required> <br><br>
+                <input id="daterent" type="date" name="daterent" required> <br><br>
                 <label for="time">Waktu Disewa :</label> <br>
                 <input type="time" name="waktusewa" required> <br> <br>
             </div>
             <div class="waktukembali">
                 <label for="date">Tanggal Kembali : </label>   <br>    
-                <input type="date" name="datereturn" required><br><br>
+                <input  id="datereturn" type="date" name="datereturn" required><br><br>
                 <label for="time">Waktu Kembali :</label>  <br>
                 <input type="time" name="waktukembali" required> <br><br>
             </div>
@@ -89,18 +89,36 @@
             ipcRenderer.send("sewa:create", elements);
         });
 
+     
+        
         //Mengirim Data Mobil
         function infomobil(){
             const { ipcRenderer } = require('electron');
+            let tanggal_sewa = document.getElementById("daterent").value;
+            let tanggal_kembali = document.getElementById("datereturn").value;
+          
+
             let info = {
                 pilihan: document.getElementById("sementara").value,
                 gambar: document.getElementById("gambarmobil").src,
-                harga: document.getElementById("hargamobil").innerHTML
+                harga: document.getElementById("hargamobil").innerHTML,
+                hari : parseDate(tanggal_sewa,tanggal_kembali)
             };
             ipcRenderer.send('infomobil', info); 
        
             
         }
+
+        
+        //calculate different date
+        function parseDate(date1,date2) {
+             
+                dt1 = new Date(date1);
+                dt2 = new Date(date2);
+                return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+            
+        }
+
 
     </script>
 
