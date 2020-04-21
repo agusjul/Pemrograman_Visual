@@ -34,3 +34,24 @@ div.datadiri{
     border-radius: 20px;
     margin-bottom: 20px;
 }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+ }
+
+ th,td {
+   text-align: center;
+   padding: 16px;
+}
+
+th {
+    background-color: teal;
+    color: white;
+}
+  
+ tr:nth-child(even) {
+    background-color: #d2d2d2;
+ }

@@ -8,7 +8,16 @@
 </head>
 <body>
     <h1>Riwayat Pembayaran</h1>
-    <div id="pembayaran"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Jenis Bank</th>
+                <th>No Rekening</th>
+                <th>Waktu Pembayaran</th>
+            </tr>
+        </thead>
+        <tbody id="tabelriwayat"></tbody>
+    </table>
 
 
 
@@ -19,18 +28,12 @@
         ipcRenderer.send("bayar:request:list");
         
         ipcRenderer.on('bayar:response:list', (event, pesan) => {
-        const listDiv = document.getElementById("pembayaran");
-        console.log("disini harusnya: ",pesan);
+        const listDiv = document.getElementById("tabelriwayat");
         pesan.forEach(pesan => {
-        const pesanDiv =document.createElement("div");
-        pesanDiv.setAttribute("class","datadiri");
-
-        const bankParagraph = document.createElement("p");
-        bankParagraph.innerHTML = `Bank: ${pesan.bank}`;
-
-        const norekParagraph = document.createElement("p")
-        norekParagraph.innerHTML = `No. Rekening: ${pesan.norek}`;
-  
+        
+        let row = document.createElement('tr');
+        row.innerHTML = "<td>" + pesan.bank + "</td>";
+        row.innerHTML += "<td>" + pesan.norek + "</td>";
 
         let date_ob = new Date();
         // current date
@@ -49,14 +52,32 @@
         // current minutes
         let minutes = date_ob.getMinutes();
 
-        const jamParagraph = document.createElement("p");
-        jamParagraph.innerHTML = `Waktu : ${hours+":"+minutes+"  [ "+date+"/"+month+"/"+year+" ]"}`;
+        // const jamParagraph = document.createElement("p");
+        // jamParagraph.innerHTML = `Waktu : ${hours+":"+minutes+"  [ "+date+"/"+month+"/"+year+" ]"}`;
 
-        pesanDiv.appendChild(bankParagraph);
-        pesanDiv.appendChild(norekParagraph);
-        pesanDiv.appendChild(jamParagraph);
+        row.innerHTML += "<td>" + `${hours+":"+minutes+"  [ "+date+"/"+month+"/"+year+" ]"}` + "</td>";
+        
+ 
+ 
+        listDiv.appendChild(row);
 
-        listDiv.append(pesanDiv);
+        // const pesanDiv =document.createElement("div");
+        // pesanDiv.setAttribute("class","datadiri");
+
+        // const bankParagraph = document.createElement("p");
+        // bankParagraph.innerHTML = `Bank: ${pesan.bank}`;
+
+        // const norekParagraph = document.createElement("p")
+        // norekParagraph.innerHTML = `No. Rekening: ${pesan.norek}`;
+  
+
+        
+
+        // pesanDiv.appendChild(bankParagraph);
+        // pesanDiv.appendChild(norekParagraph);
+        // pesanDiv.appendChild(jamParagraph);
+
+        // listDiv.append(pesanDiv);
 
         });
     });

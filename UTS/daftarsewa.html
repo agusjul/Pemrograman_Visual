@@ -7,9 +7,23 @@
     <link rel="stylesheet" href="./daftarsewa.css">
 </head>
 <body>
-    <h1>Halaman Daftar Sewa</h1>
-    <div id="daftarsewa"></div>
-    <div id="mobilpilihan"></div>
+    <h1>Daftar sewa anda</h1>
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>No Tlp.</th>
+                <th>Tanggal sewa</th>
+                <th>Waktu sewa</th>
+                <th>Tanggal kembali</th>
+                <th>Waktu kembali</th>
+                <th>Lokasi</th>
+                <th>Jenis Mobil</th>
+            </tr>
+        </thead>
+        <tbody id="tabelriwayat"></tbody>
+    </table>
 
 
 
@@ -19,49 +33,62 @@
         ipcRenderer.send("sewa:request:list");
         
         ipcRenderer.on('sewa:response:list', (event, pesan) => {
-        const listDiv = document.getElementById("daftarsewa");
+        const listDiv = document.getElementById("tabelriwayat");
 
         pesan.forEach(pesan => {
-        const pesanDiv =document.createElement("div");
-        pesanDiv.setAttribute("class","datadiri");
 
-        const nameParagraph = document.createElement("p");
-        nameParagraph.innerHTML = `Name: ${pesan.name}`;
+        let kolom = document.createElement('tr');
+        kolom.innerHTML = "<td>" + pesan.name + "</td>";
+        kolom.innerHTML += "<td>" + pesan.number + "</td>";
+        kolom.innerHTML += "<td>" + pesan.daterent + "</td>";
+        kolom.innerHTML += "<td>" + pesan.waktusewa + "</td>";
+        kolom.innerHTML += "<td>" + pesan.datereturn + "</td>";
+        kolom.innerHTML += "<td>" + pesan.waktukembali + "</td>";
+        kolom.innerHTML += "<td>" + pesan.location + "</td>";
+        kolom.innerHTML += "<td>" + pesan.jenismobil + "</td>";
 
-        const numberParagraph = document.createElement("p")
-        numberParagraph.innerHTML = `No. Telepon: ${pesan.number}`;
+        listDiv.appendChild(kolom);
 
-        const daterentParagraph = document.createElement("p")
-        daterentParagraph.innerHTML = `Tanggal Disewa: ${pesan.daterent}`;
+        // const pesanDiv =document.createElement("div");
+        // pesanDiv.setAttribute("class","datadiri");
 
-        const waktusewaParagraph = document.createElement("p")
-        waktusewaParagraph.innerHTML = `Waktu Sewa: ${pesan.waktusewa}`;
+        // const nameParagraph = document.createElement("p");
+        // nameParagraph.innerHTML = `Name: ${pesan.name}`;
+
+        // const numberParagraph = document.createElement("p")
+        // numberParagraph.innerHTML = `No. Telepon: ${pesan.number}`;
+
+        // const daterentParagraph = document.createElement("p")
+        // daterentParagraph.innerHTML = `Tanggal Disewa: ${pesan.daterent}`;
+
+        // const waktusewaParagraph = document.createElement("p")
+        // waktusewaParagraph.innerHTML = `Waktu Sewa: ${pesan.waktusewa}`;
         
-        const datereturnParagraph = document.createElement("p")
-        datereturnParagraph.innerHTML = `Tanggal Kembali: ${pesan.datereturn}`;
+        // const datereturnParagraph = document.createElement("p")
+        // datereturnParagraph.innerHTML = `Tanggal Kembali: ${pesan.datereturn}`;
 
-        const waktukembaliParagraph = document.createElement("p")
-        waktukembaliParagraph.innerHTML = `Waktu Kembali: ${pesan.waktukembali}`;
+        // const waktukembaliParagraph = document.createElement("p")
+        // waktukembaliParagraph.innerHTML = `Waktu Kembali: ${pesan.waktukembali}`;
         
-        const locationParagraph = document.createElement("p")
-        locationParagraph.innerHTML = `Lokasi: ${pesan.location}`;
+        // const locationParagraph = document.createElement("p")
+        // locationParagraph.innerHTML = `Lokasi: ${pesan.location}`;
 
-        const jenismobilParagraph = document.createElement("p")
-        jenismobilParagraph.innerHTML = `Jenis Mobil : ${pesan.jenismobil}`;
+        // const jenismobilParagraph = document.createElement("p")
+        // jenismobilParagraph.innerHTML = `Jenis Mobil : ${pesan.jenismobil}`;
        
         
         
 
-        pesanDiv.appendChild(nameParagraph);
-        pesanDiv.appendChild(numberParagraph);
-        pesanDiv.appendChild(daterentParagraph);
-        pesanDiv.appendChild(waktusewaParagraph);
-        pesanDiv.appendChild(datereturnParagraph);
-        pesanDiv.appendChild(waktukembaliParagraph);
-        pesanDiv.appendChild(locationParagraph);
-        pesanDiv.appendChild(jenismobilParagraph);
+        // pesanDiv.appendChild(nameParagraph);
+        // pesanDiv.appendChild(numberParagraph);
+        // pesanDiv.appendChild(daterentParagraph);
+        // pesanDiv.appendChild(waktusewaParagraph);
+        // pesanDiv.appendChild(datereturnParagraph);
+        // pesanDiv.appendChild(waktukembaliParagraph);
+        // pesanDiv.appendChild(locationParagraph);
+        // pesanDiv.appendChild(jenismobilParagraph);
 
-        listDiv.append(pesanDiv);
+        // listDiv.append(pesanDiv);
 
         });
     });

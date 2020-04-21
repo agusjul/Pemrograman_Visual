@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Menghitung Persegi</h1>
+    <label for="tinggi">Tinggi :</label>
+    <input id="tinggi" type="number"> <br> <br>
+    <label for="Lebar">Lebar :</label>
+    <input id="lebar" type="number"> <br>
+    
+    <button onclick="hitung()">Hitung</button>
+</body>
+<script>
+    function hitung(){
+        const electron = require("electron");
+        const { ipcRenderer } = require('electron');
+        let a = document.getElementById("tinggi").value;
+        let b = document.getElementById("alas").value;
+
+        let luas = a*t;
+
+        console.log(luas);
+    }
+</script>
+
+</html>
