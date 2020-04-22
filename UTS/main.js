@@ -124,9 +124,22 @@ ipcMain.on("sewa:request:list", event => {
 
 const menuTemplate = [{
         label : "Beranda",
-        click(){
-            todayWindow.loadURL(`file://${__dirname}/index.html`);  
-        }
+        submenu:[{
+            label : "Home",
+            click(){
+                todayWindow.loadURL(`file://${__dirname}/index.html`);  
+            }
+         },
+
+         
+         {label: "Quit",
+         accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl + Q",
+         click() {
+             app.quit();
+         }
+     }
+
+    ]
     },
 
     {
@@ -174,6 +187,8 @@ const menuTemplate = [{
 
     {
         label: "View",
-        submenu: [{ role: "reload" }, { role: "toggledevtools" }]
+        submenu: [
+            { role: "reload" },
+             { role: "toggledevtools" }]
     }
 ]
