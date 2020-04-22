@@ -1,5 +1,6 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
 }
 
 #form{
@@ -16,18 +17,29 @@ body{
     padding: 16px;
     background-color: white;
     border-radius: 20px;
+    display: flex;
+}
+
+#mobilinfo{
+    flex: 50%;
+}
+
+#bayarinfo{
+    flex: 50%;
 }
 
 input#submit {
-    margin-top: 10px;
     height: auto;
     width: 250px;
     padding: 10px;
     font-size: 18px;
     border-radius: 30px;
     font-weight: bold;
-    color: white;
-    background-color: dodgerblue;
+    background-color: white;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: dodgerblue;
 }
 
 input{
@@ -51,10 +63,31 @@ body{
     background-color: whitesmoke;
 }
 
-span{
+span#hargamobil{
     color: green;
 }
 
 h1{
     text-align: center;
+}
+
+#navbarbawah{
+    height: 70px;
+    width: 98%;
+    bottom: 0;
+    background-color: dodgerblue;
+    border-radius: 25px;
+    margin-right: 100px;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin: 20px 0px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+#navbarbawah p{
+    width: 250px;
+    margin-right: 0;
+    position: absolute;
 }
