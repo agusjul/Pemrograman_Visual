@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
-    "electron": "^8.0.0",
+    "electron": "^18.3.7",
     "uuid": "^7.0.3"
   },
   "devDependencies": {},
